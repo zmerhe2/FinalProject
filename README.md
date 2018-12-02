@@ -1,2 +1,1 @@
-# FinalProject
-IT202 Final Project
+# my-cool-app
