@@ -1,21 +1,26 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-  	<meta name="google-signin-client_id" content="455879692718-31a814ua0ch6tal2errkrtf4976ckq1h.apps.googleusercontent.com">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>My Cool App</title>
+  <title>Ghibli App</title>
 	<link rel="manifest" href="./manifest.json">
-	
-	<link rel="stylesheet" href="https://unpkg.com/material-components-web@0.40.0/dist/material-components-web.min.css" />
-	<link href="style.css" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <link rel="stylesheet" href="https://unpkg.com/material-components-web@0.40.0/dist/material-components-web.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  
+  <link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+
+
+
 </head>
 
 <body>
-	<!-- top nav bar -->
+
+  <!-- top nav bar -->
 	<header class="mdc-top-app-bar">
 		<div class="mdc-top-app-bar__row">
 			<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
@@ -25,11 +30,11 @@
 		</div>
 	</header>
 
-	<!-- the navigation drawer -->
+  <!-- the navigation drawer -->
 	<aside class="mdc-drawer mdc-drawer--modal" data-mdc-auto-init="MDCDrawer">
 		<div class="mdc-drawer__header">
 			<h3 class="mdc-drawer__title">Mail</h3>
-			<h6 class="mdc-drawer__subtitle">email@material.io</h6>
+			<h6 class="mdc-drawer__subtitle">zmerhe2@uic.edu</h6>
 		</div>
 		<div class="mdc-drawer__content">
 			<nav class="mdc-list">
@@ -38,39 +43,42 @@
 			</nav>
 		</div>
 	</aside>
-	
-  
-  <div class="mdc-drawer-scrim"></div>
+
+    <div class="mdc-drawer-scrim"></div>
 	<div id="contentArea">
     <div class="mdc-top-app-bar--fixed-adjust"></div>
     <div id="content" class="mdc-typography--body1"></div>
   </div>
-	
-  
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://unpkg.com/material-components-web@0.40.0/dist/material-components-web.min.js"></script>
 	<script src="script.js"></script>
-  
-  
-  <!-- putting the Google library scripts at the top level due to use across screens -->
+
+    <!-- putting the Google library scripts at the top level due to use across screens -->
   
   <script src="https://apis.google.com/js/platform.js"></script>
   
   <script src="https://apis.google.com/js/api.js"></script>
+  
+
+  
+
+  <script src="script.js"></script>
 
   <script>
-  	if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js')
-  .then(function(reg) {
-    // registration worked
-    console.log('Registration succeeded. Scope is ' + reg.scope);
-  }).catch(function(error) {
-    // registration failed
-    console.log('Registration failed with ' + error);
-  });
-}
-  </script>
+    //Service worker
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('./sw.js').then(function(registration) {
+            // Registration was successful
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }, function(err) {
+            // registration failed :(
+            console.log('ServiceWorker registration failed: ', err);
+          });
+        });
+      }
+    </script>
 
 
 </body>
