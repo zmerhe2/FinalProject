@@ -1,6 +1,12 @@
-var CACHE_NAME = 'my-site-cache-v1';
+var CACHE_NAME = 'iGhibli-cache-v1';
 var urlsToCache = [
-  '/index.html'
+  '/index.html',
+  './script.js',
+  './screen-content/_home.html',
+  './screen-content/_films.html',
+   './screen-content/_about.html',
+   './icon.png',
+   './logo.png'
 ];
 
 self.addEventListener('install', function(event) {

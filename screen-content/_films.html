@@ -29,29 +29,31 @@
           //
           // Put some data into it
           //
-          db.favorites.put({title: "Nicolas", director: 8}).then (function(){
+          db.favorites.put({title: "Spirited Away", director: "Hayao Miyazaki"}).then (function(){
               //
               // Then when data is stored, read from it
               //
-              return db.friends.get('Nicolas');
-          }).then(function (friend) {
+              //return db.friends.get('Nicolas');
+          }).then(function (title) {
               //
               // Display the result
               //
-              alert ("Nicolas has shoe size " + friend.shoeSize);
+              //alert ("Nicolas has shoe size " + friend.shoeSize);
           }).catch(function(error) {
              //
              // Finally don't forget to catch any error
              // that could have happened anywhere in the
              // code blocks above.
              //
-             alert ("Ooops: " + error);
+             //alert ("Ooops: " + error);
           });
       </script>
 
 
   </head>
   <body>
+
+    <h1> Film Search </h1>
 
     <div id="screenContent">
 <!--<h3 class="mdc-typography--headline3">Resources</h3>-->
@@ -129,15 +131,27 @@ function ghibli() {
         movie.description = movie.description.substring(0, 150);
         p2.textContent = `${movie.description}...`;
 
-        var btn = document.createElement('button');
+        const btn = document.createElement('button');
         btn.type="button";
+        btn.id="sound";
         btn.textContent = movie.title;
+        //btn.setAttribute('movie.title');
+
+
 
         container.appendChild(card);
         card.appendChild(h1);
         card.appendChild(p);
         card.appendChild(p2);
         card.append(btn);
+
+        //Utilization of hardware feature
+        //Plays audio of movie
+        $(btn).on("click", function(e) {
+          var words = $(this).text();
+          var utter = new SpeechSynthesisUtterance(words);
+          window.speechSynthesis.speak(utter);
+        })
 
       });
     } else {
@@ -162,10 +176,27 @@ function ghibli() {
         //movie.description = movie.description.substring(0, 300);
         p2.textContent = 'Age: ' + movie.age;
 
+        const btn = document.createElement('button');
+        btn.type="button";
+        btn.id="sound";
+        btn.textContent = movie.name;
+
         container.appendChild(card);
         card.appendChild(h1);
         card.appendChild(p);
         card.appendChild(p2);
+        card.append(btn);
+
+
+        //Utilization of hardware feature
+        //Plays audio of movie
+        $(btn).on("click", function(e) {
+          var words = $(this).text();
+          var utter = new SpeechSynthesisUtterance(words);
+          window.speechSynthesis.speak(utter);
+        })
+
+
       });
     } else {
       const errorMessage = document.createElement('marquee');
@@ -190,10 +221,26 @@ function ghibli() {
         //movie.description = movie.description.substring(0, 300);
         p2.textContent = 'Terrain: ' + movie.terrain;
 
+        const btn = document.createElement('button');
+        btn.type="button";
+        btn.id="sound";
+        btn.textContent = movie.name;
+
         container.appendChild(card);
         card.appendChild(h1);
         card.appendChild(p);
         card.appendChild(p2);
+        card.append(btn);
+
+
+        //Utilization of hardware feature
+        //Plays audio of movie
+        $(btn).on("click", function(e) {
+          var words = $(this).text();
+          var utter = new SpeechSynthesisUtterance(words);
+          window.speechSynthesis.speak(utter);
+        })
+
       });
 
   } else {
@@ -206,32 +253,14 @@ function ghibli() {
 }
 request.send();
 
-      $("button").on("click", function(e) {
-            var words = $(this).text();
-            var utter = new SpeechSynthesisUtterance(words);
-            window.speechSynthesis.speak(utter);
-        })
-
 }
 
   </script>
-
-
-    <script>
-
-        </script>
 
     <script>
   
       $("button").on("click", ghibli) 
 
-      /*$("#zip").on("input", function(e) {
-        if ($("#zip").val() != "") {
-          $("button").prop("disabled", false);
-        } else {
-          $("button").prop("disabled", true);
-        }
-      });*/
       </script>
 
 

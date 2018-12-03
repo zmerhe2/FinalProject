@@ -17,12 +17,42 @@
   </head>
   <body>
 
+      <div id="screenContent">
+        <h1 class="mdc-typography--headline3">Anime News Feed</h1>
+        <ul class="mdc-list demo-list mdc-list--two-line">
+          <li class="template mdc-list-item mdc-ripple-upgraded" tabindex="-1"><span class="mdc-list-item__text"><span class="mdc-list-item__primary-text">Line item</span><span class="mdc-list-item__secondary-text">Secondary text</span></span></li>
+        </ul>
+      </div>
 
 
-      
+  <script>
+
+    var endpoint = 'https://newsapi.org/v2/everything?' +
+              'q=Anime&' +
+              'from=2018-12-03&' +
+              'sortBy=popularity&' +
+              'apiKey=ca9c2ccf2462484c9b1be4af3f56c96c';
+
+          $.get(endpoint, function(response) {
+            $.each(response, function(i,v) {
+              console.log(response);
+              var clone = $("#screenContent li.template").clone();
+              clone.find(".mdc-list-item__primary-text").text(v.title);
+              clone.find(".mdc-list-item__secondary-text").text(v.author);
+              clone.removeClass("template");
+              clone.attr("id", v.id);
+              $("#screenContent ul").append(clone);  
+
+            });
+            //$("#loading").hide();
+          });
+
+      </script>
 
 
 
-
+<footer>
+  "Powered by News API"
+  </footer>
   </body>
 </html>

@@ -1,0 +1,111 @@
+  <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Anime News</title>
+
+    <style>
+        html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+
+  </head>
+  <body>
+
+    <h1> Film Search </h1>
+
+    <div id="screenContent">
+<!--<h3 class="mdc-typography--headline3">Resources</h3>-->
+
+
+<button type="button">Search</button>
+
+<div id="root"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+  
+
+//function called by clicking search button
+function news() {
+
+  
+
+  app = document.getElementById('root');
+  
+
+  container = document.createElement('div');
+  container.setAttribute('class', 'container');
+
+  //clears previous content everytime button is clicked
+  document.getElementById('root').innerHTML = "";
+
+  app.appendChild(container);
+
+  var url = 'https://newsapi.org/v2/everything?' +
+          'q=Apple&' +
+          'from=2018-12-03&' +
+          'sortBy=popularity&' +
+          'apiKey=API_KEY';
+
+var req = new Request(url);
+
+fetch(req)
+    .then(function(response) {
+        console.log(response.json());
+        // Begin accessing JSON data here
+        //var data = JSON.parse(this.response);
+
+        //if (req.status >= 200 && req.status < 400) {
+        //data.forEach(article => {
+          const card = document.createElement('div');
+          card.setAttribute('class', 'card');
+
+          const h1 = document.createElement('h1');
+          h1.textContent = article.title;
+
+          const p = document.createElement('p');
+          p.textContent = 'Director: ' + article.author;
+
+
+          container.appendChild(card);
+          card.appendChild(h1);
+          card.appendChild(p);
+          //card.appendChild(p2);
+          //card.append(btn);
+
+        });
+      //} else {
+        //const errorMessage = document.createElement('marquee');
+        //errorMessage.textContent = `404 Error`;
+        //app.appendChild(errorMessage);
+      //}
+
+      
+    });
+     
+
+
+}
+
+  </script>
+
+    <script>
+  
+      $("button").on("click", news) 
+
+      </script>
+
+
+  </body>
+</html>
+  
+  
+
+
+

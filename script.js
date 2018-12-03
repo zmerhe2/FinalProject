@@ -1,6 +1,6 @@
 var navItems = [
   {"label": "About", "screen": "about", "icon": "info"},
-  {"label": "Resources", "screen": "resources", "icon": "library_books"},
+  {"label": "Films", "screen": "films", "icon": "movie"},
   "divider"  
   // ,
   // {"label": "Google Sign-in", "screen": "google-sign-in", "icon": "person"}
