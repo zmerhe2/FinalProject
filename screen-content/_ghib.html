@@ -3,43 +3,25 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Studio Ghibli Films</title>
+    <title>repl.it</title>
     
 
-    <style>
-        html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-
-    <!-- Include Dexie -->
+    <!-- Include Dexie 
       <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
 
       <script>
           //
           // Define your database
           //
-          var db = new Dexie("favorites_database");
+          var db = new Dexie("favorites");
           db.version(1).stores({
-              favorites: 'name,shoeSize'
+              movies: 'title,director'
           });
 
           //
           // Put some data into it
           //
-          db.favorites.put({title: "Nicolas", director: 8}).then (function(){
-              //
-              // Then when data is stored, read from it
-              //
-              return db.friends.get('Nicolas');
-          }).then(function (friend) {
-              //
-              // Display the result
-              //
-              alert ("Nicolas has shoe size " + friend.shoeSize);
-          }).catch(function(error) {
+          db.friends.put({title: movie.title, director: movie.director }).catch(function(error) {
              //
              // Finally don't forget to catch any error
              // that could have happened anywhere in the
@@ -47,52 +29,45 @@
              //
              alert ("Ooops: " + error);
           });
-      </script>
+      </script>-->
 
 
   </head>
   <body>
-
     <div id="screenContent">
-<!--<h3 class="mdc-typography--headline3">Resources</h3>-->
-
-<script>
-  logo = document.createElement('img');
-  logo.src = 'logo.png';
-  </script>
+<h3 class="mdc-typography--headline3">Resources</h3>
 
 <form>
       <select id="results" name="results">
           <option>Films</option>
           <option>People</option>
-          <option>Locations</option>
       </select>  
 
   </form>
 
-<button type="button">Search</button>
+<button type="button">Click me</button>
 
 
 <div id="root"></div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-  
 
-//function called by clicking search button
+<script>
+
 function ghibli() {
 
   
 
   app = document.getElementById('root');
+
+  
+
+  logo = document.createElement('img');
+  logo.src = 'logo.png';
   
 
   container = document.createElement('div');
   container.setAttribute('class', 'container');
-
-  //clears previous content everytime button is clicked
-  document.getElementById('root').innerHTML = "";
 
   app.appendChild(logo);
   app.appendChild(container);
@@ -126,19 +101,12 @@ function ghibli() {
         p.textContent = 'Director: ' + movie.director;
 
         const p2 = document.createElement('p2');
-        movie.description = movie.description.substring(0, 150);
+        movie.description = movie.description.substring(0, 300);
         p2.textContent = `${movie.description}...`;
-
-        var btn = document.createElement('button');
-        btn.type="button";
-        btn.textContent = movie.title;
 
         container.appendChild(card);
         card.appendChild(h1);
         card.appendChild(p);
-        card.appendChild(p2);
-        card.append(btn);
-
       });
     } else {
       const errorMessage = document.createElement('marquee');
@@ -158,14 +126,13 @@ function ghibli() {
         const p = document.createElement('p');
         p.textContent = 'Gender: ' + movie.gender;
 
-        const p2 = document.createElement('p2');
+        //const p2 = document.createElement('p2');
         //movie.description = movie.description.substring(0, 300);
-        p2.textContent = 'Age: ' + movie.age;
+        //p2.textContent = `${movie.description}...`;
 
         container.appendChild(card);
         card.appendChild(h1);
         card.appendChild(p);
-        card.appendChild(p2);
       });
     } else {
       const errorMessage = document.createElement('marquee');
@@ -174,52 +141,19 @@ function ghibli() {
     }
 
 
-    } else if ($("#results").val() == "Locations") {
-      if (request.status >= 200 && request.status < 400) {
-      data.forEach(movie => {
-        const card = document.createElement('div');
-        card.setAttribute('class', 'card');
-
-        const h1 = document.createElement('h1');
-        h1.textContent = movie.name;
-
-        const p = document.createElement('p');
-        p.textContent = 'Climate: ' + movie.climate;
-
-        const p2 = document.createElement('p2');
-        //movie.description = movie.description.substring(0, 300);
-        p2.textContent = 'Terrain: ' + movie.terrain;
-
-        container.appendChild(card);
-        card.appendChild(h1);
-        card.appendChild(p);
-        card.appendChild(p2);
-      });
-
-  } else {
-      const errorMessage = document.createElement('marquee');
-      errorMessage.textContent = `404 Error`;
-      app.appendChild(errorMessage);
     }
+    
+    
+
+    
+
+
   }
 
-}
-request.send();
-
-      $("button").on("click", function(e) {
-            var words = $(this).text();
-            var utter = new SpeechSynthesisUtterance(words);
-            window.speechSynthesis.speak(utter);
-        })
-
+  request.send();
 }
 
   </script>
-
-
-    <script>
-
-        </script>
 
     <script>
   
