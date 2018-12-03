@@ -33,14 +33,18 @@
               'sortBy=popularity&' +
               'apiKey=ca9c2ccf2462484c9b1be4af3f56c96c';
 
+
           $.get(endpoint, function(response) {
+            console.log(response);
             $.each(response, function(i,v) {
-              console.log(response);
+              console.log(response.articles[2]);
               var clone = $("#screenContent li.template").clone();
-              clone.find(".mdc-list-item__primary-text").text(v.title);
-              clone.find(".mdc-list-item__secondary-text").text(v.author);
+              console.log(response.articles[2].title);
+              clone.find(".mdc-list-item__primary-text").text(response.articles[2].title);
+              clone.find(".mdc-list-item__secondary-text").text(response.articles[2].url);
+              //clone.find(".mdc-list-item__secondary-text").text(response.articles[2].url);
               clone.removeClass("template");
-              clone.attr("id", v.id);
+              //clone.attr("id", v.title);
               $("#screenContent ul").append(clone);  
 
             });
