@@ -2,9 +2,9 @@ var CACHE_NAME = 'iGhibli-cache-v1';
 var urlsToCache = [
   '/index.html',
   './script.js',
-  './screen-content/_home.html',
-  './screen-content/_films.html',
-   './screen-content/_about.html',
+  './_home.html',
+  './_films.html',
+   './_about.html',
    './icon.png',
    './logo.png'
 ];

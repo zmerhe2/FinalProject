@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Feed</title>
+    <title>News Feed</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
 
     <style>
@@ -12,6 +12,7 @@
         margin: 0;
         padding: 0;
       }
+
     </style>
 
   </head>
@@ -20,7 +21,8 @@
       <div id="screenContent">
         <h1 class="mdc-typography--headline3">Anime News Feed</h1>
         <ul class="mdc-list demo-list mdc-list--two-line">
-          <li class="template mdc-list-item mdc-ripple-upgraded" tabindex="-1"><span class="mdc-list-item__text"><span class="mdc-list-item__primary-text">Line item</span><span class="mdc-list-item__secondary-text">Secondary text</span></span></li>
+          <li class="template mdc-list-item mdc-ripple-upgraded" tabindex="-1"><span class="mdc-list-item__text"><span class="mdc-list-item__primary-text"></span><span id="author" class="mdc-list-item__secondary-text"></span><span id="link" class="mdc-list-item__secondary-text"></span></li>
+          
         </ul>
       </div>
 
@@ -35,19 +37,33 @@
 
 
           $.get(endpoint, function(response) {
-            console.log(response);
-            $.each(response, function(i,v) {
-              console.log(response.articles[2]);
-              var clone = $("#screenContent li.template").clone();
-              console.log(response.articles[2].title);
-              clone.find(".mdc-list-item__primary-text").text(response.articles[2].title);
-              clone.find(".mdc-list-item__secondary-text").text(response.articles[2].url);
-              //clone.find(".mdc-list-item__secondary-text").text(response.articles[2].url);
-              clone.removeClass("template");
-              //clone.attr("id", v.title);
-              $("#screenContent ul").append(clone);  
+            //console.log(response);
+            //$.each(response.articles, function(i,v) {
+              //console.log(response.articles[2]);
 
-            });
+              //console.log(response.articles[2].title);
+              var index = response.articles.length
+              var n;
+              console.log(n);
+
+              for (n = 0; n < index; n++) {
+                var clone = $("#screenContent li.template").clone();
+                clone.find(".mdc-list-item__primary-text").text(response.articles[n].title);
+                clone.find("#author").text("by " + response.articles[n].author);
+
+                clone.find("#link").text("URL: " + response.articles[n].url);
+
+                clone.removeClass("mdc-list-item__text");
+                //clone.attr("id", response.articles[n].id);
+                n++;
+                $("#screenContent ul").append(clone);
+                
+                //console.log(n);  
+                }
+
+
+
+            //});
             //$("#loading").hide();
           });
 
