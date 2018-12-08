@@ -21,7 +21,7 @@
       <div id="screenContent">
         <h1 class="mdc-typography--headline3">Anime News Feed</h1>
         <ul class="mdc-list demo-list mdc-list--two-line">
-          <li class="template mdc-list-item mdc-ripple-upgraded" tabindex="-1"><span class="mdc-list-item__text"><span class="mdc-list-item__primary-text"></span><span id="author" class="mdc-list-item__secondary-text"></span><span id="link" class="mdc-list-item__secondary-text"></span></li>
+          <li class="template mdc-list-item mdc-ripple-upgraded" tabindex="-1"><span class="mdc-list-item__text"><span class="mdc-list-item__primary-text"></span><!--<span id="author" class="mdc-list-item__secondary-text"></span>--><span id="link" class="mdc-list-item__secondary-text"></span></li>
           
         </ul>
       </div>
@@ -38,33 +38,39 @@
 
           $.get(endpoint, function(response) {
             //console.log(response);
-            //$.each(response.articles, function(i,v) {
+            $.each(response, function(i,v) {
               //console.log(response.articles[2]);
 
               //console.log(response.articles[2].title);
-              var index = response.articles.length
-              var n;
-              console.log(n);
+              var index = response.articles.length;
+              console.log(index);
 
-              for (n = 0; n < index; n++) {
+
+              //appends article title, author, and url from API
+
+              var n = 0;
+              while (n <= index) {
+
+              
                 var clone = $("#screenContent li.template").clone();
                 clone.find(".mdc-list-item__primary-text").text(response.articles[n].title);
-                clone.find("#author").text("by " + response.articles[n].author);
+                //clone.find("#author").text("by " + response.articles[n].author);
 
-                clone.find("#link").text("URL: " + response.articles[n].url);
+                var str = response.articles[n].url;
+                clone.find("#link").text("URL: " + str);
 
-                clone.removeClass("mdc-list-item__text");
-                //clone.attr("id", response.articles[n].id);
-                n++;
+                clone.removeClass("template");
+                  //clone.attr("id", response.articles[n].id);
                 $("#screenContent ul").append(clone);
+                n++;
+              };
                 
-                //console.log(n);  
-                }
 
 
 
-            //});
-            //$("#loading").hide();
+
+            });
+
           });
 
       </script>
